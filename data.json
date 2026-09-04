@@ -1,0 +1,50 @@
+{
+  "updated": "2026-09-04T20:15:43Z",
+  "items": [
+    {
+      "date": "2026-09-11",
+      "startSec": 48600,
+      "time": "13:30",
+      "subject": "cles",
+      "room": "b308",
+      "text": "Bring laptop and agenda",
+      "done": false
+    },
+    {
+      "date": "2026-09-10",
+      "startSec": 30600,
+      "time": "08:30",
+      "subject": "in",
+      "room": "b217",
+      "text": "Learn the difference between bits and bytes",
+      "done": true
+    },
+    {
+      "date": "2026-09-09",
+      "startSec": 39600,
+      "time": "11:00",
+      "subject": "entl",
+      "room": "e009",
+      "text": "Read pages 1-16 of the hunger games I",
+      "done": false
+    },
+    {
+      "date": "2026-09-04",
+      "startSec": 34200,
+      "time": "09:30",
+      "subject": "schk",
+      "room": "b308",
+      "text": "Hoofdstuk 1.1 - 3, 5, 6\nHoofdstuk 1.2 - 17, 18, 19, 24",
+      "done": false
+    },
+    {
+      "date": "2026-09-03",
+      "startSec": 43200,
+      "time": "12:00",
+      "subject": "schk",
+      "room": "b308",
+      "text": "Ask about the R-les I was dismissed from",
+      "done": false
+    }
+  ]
+}
