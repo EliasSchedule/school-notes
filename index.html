@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>School Notes</title>
+<style>
+  :root {
+    --base: #1a1b26;
+    --surface0: #1c211c;
+    --surface1: #242b24;
+    --text: #c0caf5;
+    --subtext: #9aa5ce;
+    --mauve: #e0c56d;
+    --green: #9ece6a;
+    --red: #f7768e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--base);
+    color: var(--text);
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    line-height: 1.55;
+  }
+  header {
+    padding: 28px 24px 18px;
+    border-bottom: 1px solid var(--surface1);
+    background: linear-gradient(180deg, #1d1e2b, var(--base));
+  }
+  header h1 {
+    margin: 0;
+    font-size: 22px;
+    color: var(--mauve);
+    letter-spacing: 0.02em;
+  }
+  header p {
+    margin: 4px 0 0;
+    color: var(--subtext);
+    font-size: 13px;
+  }
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+  .empty {
+    text-align: center;
+    color: var(--subtext);
+    padding: 60px 0;
+  }
+  .day {
+    margin-bottom: 34px;
+  }
+  .day h2 {
+    font-size: 16px;
+    color: var(--mauve);
+    margin: 0 0 12px;
+    border-bottom: 1px solid var(--surface1);
+    padding-bottom: 8px;
+  }
+  .day .count {
+    color: var(--subtext);
+    font-weight: normal;
+    font-size: 12px;
+    margin-left: 8px;
+  }
+  .note {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: var(--surface0);
+    border: 1px solid var(--surface1);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+  .note.done {
+    opacity: 0.62;
+  }
+  .note.done .note-text {
+    text-decoration: line-through;
+  }
+  .badge {
+    flex: 0 0 auto;
+    margin-top: 2px;
+    width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    text-align: center;
+    line-height: 18px;
+    font-size: 12px;
+  }
+  .badge.done { background: var(--green); color: var(--base); }
+  .badge.open { background: var(--surface1); color: var(--subtext); }
+  .note-info { font-size: 12px; color: var(--subtext); margin-bottom: 4px; }
+  .note-text { font-size: 15px; white-space: pre-wrap; word-break: break-word; }
+  footer {
+    text-align: center;
+    color: var(--subtext);
+    font-size: 12px;
+    padding: 30px 0 40px;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>School Notes</h1>
+  <p id="updated"></p>
+</header>
+<main id="content"></main>
+<footer>Automatically synced from Elias's school notes.</footer>
+<script>
+  fetch("notes.json")
+    .then(r => r.json())
+    .then(render)
+    .catch(() => {
+      document.getElementById("content").innerHTML =
+        '<div class="empty">No notes available yet.</div>';
+    });
+
+  const MONTHS = ["January","February","March","April","May","June",
+                  "July","August","September","October","November","December"];
+  const DAYS = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+  function fmtLong(iso) {
+    const d = new Date(iso + "T00:00:00");
+    return DAYS[d.getDay()] + ", " + d.getDate() + " " + MONTHS[d.getMonth()] + " " + d.getFullYear();
+  }
+
+  function render(data) {
+    const notes = data && data.notes ? data.notes : (data || {});
+    const done = data && data.done ? data.done : {};
+    const keys = Object.keys(notes).sort();
+
+    document.getElementById("updated").textContent =
+      "Last updated: " + new Date().toLocaleString();
+
+    const content = document.getElementById("content");
+    if (!keys.length) {
+      content.innerHTML = '<div class="empty">No notes yet.</div>';
+      return;
+    }
+
+    // Group keys by date. Key format: YYYY-MM-DD#startSec
+    const groups = {};
+    keys.forEach(k => {
+      const date = k.split("#")[0];
+      const startSec = parseInt(k.split("#")[1] || "0", 10);
+      if (!groups[date]) groups[date] = [];
+      groups[date].push({ key: k, startSec, text: notes[k], isDone: done[k] === true });
+    });
+    const dates = Object.keys(groups).sort();
+
+    let html = "";
+    dates.forEach(date => {
+      const arr = groups[date].slice().sort((a, b) => a.startSec - b.startSec);
+      html += '<section class="day"><h2>' + fmtLong(date) +
+              '<span class="count">' + arr.length + " note" + (arr.length > 1 ? "s" : "") +
+              '</span></h2>';
+      arr.forEach(n => {
+        const t = new Date(0);
+        t.setUTCSeconds(n.startSec);
+        const hm = String(t.getUTCHours()).padStart(2, "0") + ":" + String(t.getUTCMinutes()).padStart(2, "0");
+        html += '<div class="note' + (n.isDone ? " done" : "") + '">' +
+                '<div class="badge ' + (n.isDone ? "done" : "open") + '">' + (n.isDone ? "&#10003;" : "") + '</div>' +
+                '<div><div class="note-info">' + hm + (n.isDone ? " &#183; finished" : "") + '</div>' +
+                '<div class="note-text"></div></div></div>';
+      });
+      html += "</section>";
+    });
+    content.innerHTML = html;
+
+    // Escape + assign text safely
+    const textRe = /<div class="note-text"><\/div>/;
+    let idx = 0;
+    document.querySelectorAll(".note-text").forEach(el => {
+      el.textContent = notes[keys[idx++]];
+    });
+  }
+</script>
+</body>
+</html>
