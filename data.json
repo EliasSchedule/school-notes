@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-04T20:15:43Z",
+  "updated": "2026-09-04T20:21:44Z",
   "items": [
     {
       "date": "2026-09-11",
@@ -18,15 +18,6 @@
       "room": "b217",
       "text": "Learn the difference between bits and bytes",
       "done": true
-    },
-    {
-      "date": "2026-09-09",
-      "startSec": 39600,
-      "time": "11:00",
-      "subject": "entl",
-      "room": "e009",
-      "text": "Read pages 1-16 of the hunger games I",
-      "done": false
     },
     {
       "date": "2026-09-04",
