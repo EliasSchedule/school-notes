@@ -111,7 +111,8 @@
 <main id="content"></main>
 <footer>Automatically synced from Elias's school notes.</footer>
 <script>
-  fetch("notes.json")
+  // Cache-bust so the freshest notes always load (Pages serves max-age=600)
+  fetch("notes.json?v=" + Date.now())
     .then(r => r.json())
     .then(render)
     .catch(() => {
