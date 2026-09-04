@@ -1,15 +1,6 @@
 {
-  "updated": "2026-09-04T20:21:46Z",
+  "updated": "2026-09-04T20:21:48Z",
   "items": [
-    {
-      "date": "2026-09-11",
-      "startSec": 48600,
-      "time": "13:30",
-      "subject": "cles",
-      "room": "b308",
-      "text": "Bring laptop and agenda",
-      "done": false
-    },
     {
       "date": "2026-09-04",
       "startSec": 34200,
