@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-04T20:21:44Z",
+  "updated": "2026-09-04T20:21:46Z",
   "items": [
     {
       "date": "2026-09-11",
@@ -9,15 +9,6 @@
       "room": "b308",
       "text": "Bring laptop and agenda",
       "done": false
-    },
-    {
-      "date": "2026-09-10",
-      "startSec": 30600,
-      "time": "08:30",
-      "subject": "in",
-      "room": "b217",
-      "text": "Learn the difference between bits and bytes",
-      "done": true
     },
     {
       "date": "2026-09-04",
