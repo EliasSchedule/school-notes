@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-10T11:19:10Z",
+  "updated": "2026-09-11T10:50:35Z",
   "items": [
     {
       "date": "2026-09-17",
@@ -8,6 +8,15 @@
       "subject": "netl",
       "room": "e205",
       "text": "Schrijfdossier creative schrijfopdracht 1:\nEen dag in mijn leven maar dan anders",
+      "done": false
+    },
+    {
+      "date": "2026-09-11",
+      "startSec": 52200,
+      "time": "14:30",
+      "subject": "in",
+      "room": "b201",
+      "text": "Huiswerk",
       "done": false
     },
     {
