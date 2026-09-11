@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-11T10:50:35Z",
+  "updated": "2026-09-11T10:50:40Z",
   "items": [
     {
       "date": "2026-09-17",
@@ -17,7 +17,7 @@
       "subject": "in",
       "room": "b201",
       "text": "Huiswerk",
-      "done": false
+      "done": true
     },
     {
       "date": "2026-09-04",
