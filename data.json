@@ -1,15 +1,6 @@
 {
-  "updated": "2026-10-02T12:14:20Z",
+  "updated": "2026-10-02T12:14:22Z",
   "items": [
-    {
-      "date": "2026-10-02",
-      "startSec": 39600,
-      "time": "11:00",
-      "subject": "entl",
-      "room": "e104",
-      "text": "Note",
-      "done": false
-    },
     {
       "date": "2026-09-17",
       "startSec": 48600,
