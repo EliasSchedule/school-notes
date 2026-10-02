@@ -1,23 +1,14 @@
 {
-  "updated": "2026-09-11T10:50:42Z",
+  "updated": "2026-10-02T12:14:18Z",
   "items": [
     {
       "date": "2026-09-17",
       "startSec": 48600,
       "time": "13:30",
-      "subject": "netl",
-      "room": "e205",
+      "subject": "",
+      "room": "",
       "text": "Schrijfdossier creative schrijfopdracht 1:\nEen dag in mijn leven maar dan anders",
       "done": false
-    },
-    {
-      "date": "2026-09-11",
-      "startSec": 52200,
-      "time": "14:30",
-      "subject": "in",
-      "room": "b201",
-      "text": "Huiswerk",
-      "done": true
     },
     {
       "date": "2026-09-04",
